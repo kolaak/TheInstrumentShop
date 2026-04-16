@@ -149,7 +149,7 @@ That way you don't need to remember to source anything — the script picks up `
 
 **User:**
 
-create a .env and modify gitignore for me, put this in for my GITHUB_TOKEN=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
+create a .env and modify gitignore for me, put this in for my GITHUB_TOKEN=[REDACTED]
 
 ---
 
