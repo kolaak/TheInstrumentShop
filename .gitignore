@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ### Maven template
 .env
 postgres-data
@@ -31,17 +31,6 @@ bin/
 
 #vscode
 
-=======
-# Compiled class file
-*.class
-
-.env
-
-=======
-# Compiled class file
-*.class
-
->>>>>>> 5c4bfc4010bca26c39ae42cf644f35b95e8a2875
 # Log file
 *.log
 
