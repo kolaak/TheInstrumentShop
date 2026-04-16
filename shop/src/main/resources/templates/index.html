@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  
+  
+    <title>JavaShop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+<!--
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+-->
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script>
+  (function(h,o,u,n,d) {
+    h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+    d=o.createElement(u);d.async=1;d.src=n
+    n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+  })(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js','DD_RUM')
+  window.DD_RUM.onReady(function() {
+    window.DD_RUM.init({
+      clientToken: 'pub8201fcca2334a43a7d9de0268e8a17d2',
+      applicationId: 'dd6ac883-1fa8-4ac6-9c97-44690a15f813',
+      site: 'datadoghq.com',
+      service: 'instrumentshop',
+      env: 'test-instrumentShop-test',
+      // Specify a version number to identify the deployed version of your application in Datadog
+      // version: '1.0.0', 
+      sessionSampleRate: 100,
+      sessionReplaySampleRate: 20,
+      trackUserInteractions: true,
+      trackResources: true,
+      trackLongTasks: true,
+      defaultPrivacyLevel: 'mask-user-input',
+    });
+  })
+</script>
+          
+
+               
+<style>
+.body {
+  font-family: Arial;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+
+</head>
+
+<body>
+
+
+       <div><div style="float:left;margin:0px 50px"><img th:src="datadog-logo-purple.png" alt="logo" width="200" height="200" /></div><h2>Instrumentation Shop</h2></div> 
+       	
+         <div>
+            	<form action="#" th:action="@{/}" th:object="${user}" method="post">
+        		  
+                <p>Name:  <input type="text" th:field="*{name}" /></p>
+          	    
+          		  <p>
+                  Location: <select th:field="*{location}">
+          		      <option th:value="California" th:text="California"></option>
+          		      <option th:value="Utah" th:text="Utah"></option>
+          		      <option th:value="Colorado" th:text="Colorado"></option>
+                    <option th:value="Chicago" th:text="Chicago"></option>
+                    <option th:value="Austin" th:text="Austin"></option>
+                  </select> 
+      			   </p>
+              
+                <p>
+                  <input type="submit" value="Login" /> 
+      				  </p> 
+
+    			   </form> 
+    	</div>
+    	
+         
+            <h3>Local Sales Data: </h3>
+
+            <div class="tab">
+              <button class="tablinks" onclick="openCity(event, 'London')">USA</button>
+              <button class="tablinks" onclick="openCity(event, 'Paris')">Sri Lanka</button>
+          <!--    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button> -->
+            </div>
+
+            <div id="London" class="tabcontent">
+              <h3>US Inventory:</h3>
+                 <div class="table-responsive">
+
+				       <table class="table table-striped" id="product-table">
+				           <thead>
+				           <tr>
+				               <th>Product Num</th>
+				               <th>SKU</th>
+				               <th>Name</th>
+				               <th>Description</th>
+				               <th>Price £</th>
+				               <th>Qty Available</th>
+				           </tr>
+				           </thead>
+				           <tbody>
+				           <tr th:each="product : ${products}">
+				               <td th:text="${product.id}">1</td>
+				               <td th:text="${product.sku}">12345678</td>
+				               <td th:text="${product.name}">Widget</td>
+				               <td th:text="${product.description}">Widget</td>
+				               <td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}">1.19</td>
+				               <td th:text="${product.amountAvailable}">2</td>
+				           </tr>
+				           </tbody>
+				       </table>
+   					</div>
+            </div>
+            
+            <div id="Paris" class="tabcontent">
+              <h3>Sri Lanka Offers:</h3>
+               <div class="table-responsive">
+
+				       <table class="table table-striped" id="instrument-table">
+				           <thead>
+				           <tr>
+				               <th>Title</th>
+				               <th>Instrument Type</th>
+				               <th>Condition</th>
+				               <th>Seller Type</th>
+				               <th>Price</th>
+				               <th>Location</th>
+				           </tr>
+				           </thead>
+				           <tbody>
+				           <tr th:each="instrument : ${instruments}">
+				               <td th:text="${instrument.title}">WidgetWidgetWidget</td>
+				               <td th:text="${instrument.instrument_type}">WidgetWidgetWidget</td>
+				               <td th:text="${instrument.condition}">WidgetWidget</td>
+				               <td th:text="${instrument.seller_type}">WidgetWidget</td>
+				               <td th:text="${instrument.price}">WidgetWidget</td>
+				               <td th:text="${instrument.location}">WidgetWidget</td>
+				           </tr>
+				           </tbody>
+				       </table>
+   					</div>
+            </div>
+              
+
+                
+  <script type="text/javascript">
+      function openCity(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+      }
+</script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

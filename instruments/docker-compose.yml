@@ -1,0 +1,49 @@
+version: '3'
+
+
+services:
+  splunk-otel-collector:
+    image: quay.io/signalfx/splunk-otel-collector:0.59.1
+    environment:
+      - SPLUNK_ACCESS_TOKEN=${SPLUNK_ACCESS_TOKEN}
+      - SPLUNK_REALM=${SPLUNK_REALM}
+    ports:
+      - "13133:13133"
+      - "14250:14250"
+      - "14268:14268"
+      - "4317:4317"
+      - "6060:6060"
+      - "8888:8888"
+      - "9080:9080"
+      - "9411:9411"
+  instruments:
+    image:  shabushabu/javashop.instruments:latest
+    build:
+      .
+    ports:
+      - "8040:8040"
+    links:
+      - splunk-otel-collector
+      - postgresDB2 
+    environment:
+      - USERNAME=${USERNAME}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://splunk-otel-collector:4317
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresDB2:5432/instruments
+      - SPRING_DATASOURCE_USERNAME=instruments
+      - SPRING_DATASOURCE_PASSWORD=instruments
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - splunk-otel-collector  
+      - postgresDB2
+  postgresDB2:
+    image: "postgres:13.1-alpine"
+    container_name: postgresDB2
+    environment:
+      - POSTGRES_USER=instruments
+      - POSTGRES_PASSWORD=instruments
+    ports:
+      - "5432:5432"
+    #volumes:
+     # - ./sql/instruments.sql:/docker-entrypoint-initdb.d/instruments.sql
+     # - ./sql/stocks.sql:/docker-entrypoint-initdb.d/stocks.sql
+

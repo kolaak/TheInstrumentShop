@@ -1,0 +1,11 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "datadog.ust.service.setup.linkedNames": [
+        "conductors",
+        "instruments",
+        "products",
+        "shop"
+    ],
+    "datadog.ust.environment.setup.focusedName": "desjardins_xapm_instrumentation_shop"
+}

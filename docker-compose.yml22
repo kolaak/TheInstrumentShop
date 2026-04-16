@@ -1,0 +1,141 @@
+version: '3'
+services:
+  shop:
+    build:
+      ./shop
+    ports:
+      - "8010:8010"
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "shop", "service": "shop"}]'
+    links:
+      - products
+      - stock
+      - instruments
+    environment:
+      - USERNAME=${SHOP_USER}
+      - DD_INSTRUMENT_SERVICE_WITH_APM=true
+    healthcheck:
+      test: curl -sS http://localhost:8010/healthcheck | grep -c 200 > /dev/null
+      interval: 2s
+      retries: 5
+      start_period: 5s
+      timeout: 2s
+    volumes:
+      - type: bind
+        source: ./shop/data
+        target: /container/shop/data
+      - type: bind
+        source: ./.env
+        target: /container/shop/data/.env
+    depends_on:
+      datadog:
+        condition: service_healthy
+  products:
+    image: shabushabu/javashop.products:latest
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "products", "service": "products"}]'
+    build:
+      ./products
+    ports:
+      - "8020:8020"
+    healthcheck:
+      test: curl -sS http://localhost:8020/products/healthcheck | grep -c 200 > /dev/null
+      interval: 2s
+      retries: 5
+      start_period: 5s
+      timeout: 2s
+    environment:
+      - USERNAME=${SHOP_USER}
+      - DD_INSTRUMENT_SERVICE_WITH_APM=false
+  conductors:
+    image: shabushabu/javashop.conductors:latest
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "conductors", "service": "conductors"}]'
+    build:
+      ./conductors
+    ports:
+      - "8050:8050"
+    healthcheck:
+      test: curl -sS http://localhost:8050/conductors/healthcheck | grep -c 200 > /dev/null
+      interval: 2s
+      retries: 5
+      start_period: 5s
+      timeout: 2s
+    environment:
+      - USERNAME=${SHOP_USER}
+      - DD_INSTRUMENT_SERVICE_WITH_APM=true
+  stock:
+    image: shabushabu/javashop.stock:latest
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "stock", "service": "stock"}]'
+    build:
+      ./stock
+    ports:
+      - "8030:8030"
+    healthcheck:
+      test: curl -sS http://localhost:8030/healthcheck | grep -c 200 > /dev/null
+      interval: 2s
+      retries: 5
+      start_period: 5s
+      timeout: 2s 
+    environment:
+      - USERNAME=${SHOP_USER}
+      - DD_INSTRUMENT_SERVICE_WITH_APM=false
+  shoptester:
+    image: shabushabu/javashop.tester:latest
+    build:
+      ./test
+    links:
+      - shop
+    environment:
+      - USERNAME=${SHOP_USER}
+      - DD_INSTRUMENT_SERVICE_WITH_APM=false
+        # con/opt/datadog-agent/bin/agent/agent healthdition: service_healthy
+    volumes: 
+      - type: bind
+        source: ./test/data
+        target: /container/test/data      
+  instruments:
+    image:  shabushabu/javashop.instruments:latest
+    build:
+      ./instruments
+    ports:
+      - "8040:8040"
+    healthcheck:
+      test: curl -sS http://localhost:8040/healthcheck | grep -c 200 > /dev/null
+      #curl --fail http://localhost:8040//healthcheck  || exit 1
+      interval: 2s
+      retries: 5
+      start_period: 5s
+      timeout: 2s
+    links:
+      - postgresDB
+    environment:
+      - USERNAME=${SHOP_USER}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresDB:5432/instruments
+      - SPRING_DATASOURCE_USERNAME=instruments
+      - SPRING_DATASOURCE_PASSWORD=instruments
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - DD_INSTRUMENT_SERVICE_WITH_APM=false
+    depends_on:
+      postgresDB:
+        condition: service_healthy
+  postgresDB:
+    image: "postgres:13.1-alpine"
+    container_name: postgresDB
+    environment:
+      - POSTGRES_USER=instruments
+      - POSTGRES_PASSWORD=instruments
+      - DD_INSTRUMENT_SERVICE_WITH_APM=false
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
+    volumes:
+      - ./db/sql/instruments-latest.sql:/docker-entrypoint-initdb.d/instruments-latest.sql
+      - ./db/sql/instruments-chicago.sql:/docker-entrypoint-initdb.d/instruments-chicago.sql
+
+

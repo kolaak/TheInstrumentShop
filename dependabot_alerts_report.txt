@@ -1,0 +1,157 @@
+Dependabot Alerts Report
+Repository: magnefique-studios/instrumentShop
+Generated:  2026-04-14 18:03:44
+Total alerts: 17
+------------------------------------------------------------
+  Alert #17
+    State:              open
+    Severity:           medium
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.0-alpha1, < 2.25.4
+    Summary:            Apache Log4j Core: Silent log event loss in XmlLayout due to unescaped XML 1.0 forbidden characters
+    Created:            2026-04-10T23:54:38Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/17
+------------------------------------------------------------
+  Alert #16
+    State:              open
+    Severity:           medium
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.0-alpha1, < 2.25.4
+    Summary:            Apache Log4j Core: Silent log event loss in XmlLayout due to unescaped XML 1.0 forbidden characters
+    Created:            2026-04-10T23:54:38Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/16
+------------------------------------------------------------
+  Alert #15
+    State:              open
+    Severity:           medium
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.0-beta9, < 2.25.3
+    Summary:            Apache Log4j does not verify the TLS hostname in its Socket Appender
+    Created:            2025-12-19T23:59:00Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/15
+------------------------------------------------------------
+  Alert #14
+    State:              open
+    Severity:           medium
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.0-beta9, < 2.25.3
+    Summary:            Apache Log4j does not verify the TLS hostname in its Socket Appender
+    Created:            2025-12-19T23:59:00Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/14
+------------------------------------------------------------
+  Alert #13
+    State:              open
+    Severity:           medium
+    Package:            commons-httpclient:commons-httpclient (maven)
+    Vulnerable range:   >= 3.0, < 4.0
+    Summary:            Improper Certificate Validation in Apache Commons HttpClient
+    Created:            2024-03-14T22:13:13Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/13
+------------------------------------------------------------
+  Alert #12
+    State:              open
+    Severity:           low
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.4.0, < 2.12.3
+    Summary:            Improper validation of certificate with host mismatch in Apache Log4j SMTP appender
+    Created:            2024-02-16T15:32:12Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/12
+------------------------------------------------------------
+  Alert #11
+    State:              open
+    Severity:           medium
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.4, < 2.12.4
+    Summary:            Improper Input Validation and Injection in Apache Log4j2
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/11
+------------------------------------------------------------
+  Alert #10
+    State:              open
+    Severity:           high
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.4.0, < 2.12.3
+    Summary:            Apache Log4j2 vulnerable to Improper Input Validation and Uncontrolled Recursion
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/10
+------------------------------------------------------------
+  Alert #9
+    State:              open
+    Severity:           critical
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.4, < 2.12.2
+    Summary:            Remote code injection in Log4j
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/9
+------------------------------------------------------------
+  Alert #8
+    State:              open
+    Severity:           critical
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   < 2.12.2
+    Summary:            Incomplete fix for Apache Log4j vulnerability
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/8
+------------------------------------------------------------
+  Alert #7
+    State:              open
+    Severity:           critical
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.0, < 2.8.2
+    Summary:            Deserialization of Untrusted Data in Log4j
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/7
+------------------------------------------------------------
+  Alert #6
+    State:              open
+    Severity:           low
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.4.0, < 2.12.3
+    Summary:            Improper validation of certificate with host mismatch in Apache Log4j SMTP appender
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/6
+------------------------------------------------------------
+  Alert #5
+    State:              open
+    Severity:           medium
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.4, < 2.12.4
+    Summary:            Improper Input Validation and Injection in Apache Log4j2
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/5
+------------------------------------------------------------
+  Alert #4
+    State:              open
+    Severity:           high
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.4.0, < 2.12.3
+    Summary:            Apache Log4j2 vulnerable to Improper Input Validation and Uncontrolled Recursion
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/4
+------------------------------------------------------------
+  Alert #3
+    State:              open
+    Severity:           critical
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.4, < 2.12.2
+    Summary:            Remote code injection in Log4j
+    Created:            2024-02-16T15:32:11Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/3
+------------------------------------------------------------
+  Alert #2
+    State:              open
+    Severity:           critical
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   < 2.12.2
+    Summary:            Incomplete fix for Apache Log4j vulnerability
+    Created:            2024-02-16T15:32:10Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/2
+------------------------------------------------------------
+  Alert #1
+    State:              open
+    Severity:           critical
+    Package:            org.apache.logging.log4j:log4j-core (maven)
+    Vulnerable range:   >= 2.0, < 2.8.2
+    Summary:            Deserialization of Untrusted Data in Log4j
+    Created:            2024-02-16T15:32:10Z
+    URL:                https://github.com/magnefique-studios/instrumentShop/security/dependabot/1

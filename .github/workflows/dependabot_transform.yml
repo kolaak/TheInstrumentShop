@@ -1,0 +1,58 @@
+name: Dependabot Fix with AWS Transform
+
+on:
+  workflow_dispatch:
+    inputs:
+      transformation_name:
+        description: "AWS Transform Custom transformation name"
+        required: true
+        type: string
+      build_command:
+        description: "Build/validation command"
+        required: false
+        default: "mvn clean install"
+        type: string
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+  security-events: read
+
+jobs:
+  transform-fix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # AWS auth via OIDC — no long-lived keys
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Install AWS Transform CLI
+        run: curl -fsSL https://transform-cli.awsstatic.com/install.sh | bash
+
+      - name: Run AWS Transform Custom
+        run: |
+          chmod +x run_code_analysis.sh
+          ./run_code_analysis.sh \
+            -n "${{ inputs.transformation_name }}" \
+            -c "${{ inputs.build_command }}"
+
+      - name: Fetch alerts and create fix PRs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install requests
+          python dependabot_alerts.py

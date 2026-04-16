@@ -1,0 +1,19 @@
+
+
+shop Dockerfile Entrypoint.
+
+#ENTRYPOINT java -javaagent:splunk-otel-javaagent-all.jar  -Dotel.resource.attributes=service.name=shop,deployment.environment=${USERNAME}2_Apm_Instrumentation_Shop -jar app.jar
+
+stock Dockerfile Entrypoint.
+
+#ENTRYPOINT java -javaagent:splunk-otel-javaagent-all.jar -Dotel.resource.attributes=service.name=stock,deployment.environment=${USERNAME}2_Apm_Instrumentation_Shop -jar app.jar
+
+products Dockerfile Entrypoint.
+
+#ENTRYPOINT java -javaagent:splunk-otel-javaagent-all.jar  -Dotel.resource.attributes=service.name=products,deployment.environment=${USERNAME}2_Apm_Instrumentation_Shop -jar app.jar  server app-config.yml
+
+instruments Dockerfile Entrypoint.
+
+
+#ENTRYPOINT java $JAVA_OPTS -javaagent:splunk-otel-javaagent-all.jar -Dotel.resource.attributes=service.name=instruments,deployment.environment=${USERNAME}2_Apm_Instrumentation_Shop -jar app.jar
+
